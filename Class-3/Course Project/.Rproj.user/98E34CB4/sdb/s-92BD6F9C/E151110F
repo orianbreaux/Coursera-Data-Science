@@ -1,0 +1,17 @@
+{
+    "contents" : "run_analysis <- function()\n{\n        # Read data features.\n        features <- as.character(read.table(\"./UCI HAR Dataset/features.txt\")[,2])\n        \n        # Read training data, labeling columns with descriptive names.\n        train_subject <- read.table(\"./UCI HAR Dataset/train/subject_train.txt\",col.names=c(\"subjectID\"))\n        train_y <- read.table(\"./UCI HAR Dataset/train/y_train.txt\",col.names=c(\"activityName\"))\n        train_x <- read.table(\"./UCI HAR Dataset/train/X_train.txt\",col.names=features)\n        \n        # For training data, extract only the measurements on the mean() and std() for each feature.\n        train_x <- train_x[,grepl(\"mean\\\\(\\\\)|std\\\\(\\\\)\",features)]\n        \n        # Combine training data.\n        data_train <- cbind(train_subject, train_y, train_x)\n        \n        # Read test data.\n        test_subject <- read.table(\"./UCI HAR Dataset/test/subject_test.txt\",col.names=c(\"subjectID\"))\n        test_y <- read.table(\"./UCI HAR Dataset/test/y_test.txt\",col.names=c(\"activityName\"))\n        test_x <- read.table(\"./UCI HAR Dataset/test/X_test.txt\",col.names=c(features))\n        \n        # For test data, extract only the measurements on the mean and standard deviation for each feature.\n        test_x <- test_x[,grepl(\"mean\\\\(\\\\)|std\\\\(\\\\)\",features)]\n        \n        # Combine test data.\n        data_test <- cbind(test_subject, test_y, test_x)\n        \n        # Merge training and test sets to create one data set.\n        data_combined <- rbind(data_train, data_test)\n        \n        # Apply descriptive activity names to name the activities in the data set.\n        activityNames <- read.table(\"./UCI HAR Dataset/activity_labels.txt\")\n        data_combined$activityName <- factor(data_combined$activityName,levels=activityNames[,1],labels=activityNames[,2])\n        \n        # Create a second, independent tidy data set with the average of each variable for each activity and each subject.\n        data_tidy <- melt(data_combined, id=c(\"subjectID\",\"activityName\"),measure.vars=colnames(data_combined[-c(1,2)]))\n        data_tidy <- dcast(data_tidy, subjectID + activityName ~ variable, mean)\n\n        # Create data output file of data_tidy\n        write.table(data_tidy, file=\"tidyData.txt\", row.names=FALSE, col.names=colnames(data_tidy))       \n}",
+    "created" : 1406323707931.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2194549224",
+    "id" : "E151110F",
+    "lastKnownWriteTime" : 1406745632,
+    "path" : "~/Desktop/Course3/run_analysis.R",
+    "project_path" : "run_analysis.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

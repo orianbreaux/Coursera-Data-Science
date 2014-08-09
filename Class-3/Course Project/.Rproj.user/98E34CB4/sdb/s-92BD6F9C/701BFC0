@@ -1,0 +1,17 @@
+{
+    "contents" : "---\ntitle: \"README\"\nauthor: \"Orian Breaux\"\ndate: \"July 25, 2014\"\noutput: html_document\n---\n\nThis directory contains the following folders and files:\n==================================================================\n- 'README.md'\n\n- 'run_analysis.R': Defines function \"run_analysis()\" that reads data from the \"test\" and \"train\" folders in the \"UCI HAR Dataset\" and outputs a tidy data file \"tidyData.txt\" into the main level of the working directory.\n\n- 'tidyData.txt': Output file generated when calling \"run_analysis()\" function, as defined in 'run_analysis.R'\n\n- 'CodeBook.md': Describes the variables, the data, and any transformations or work performed to clean up the data.\n\n- 'UCI HAR Dataset/': Folder containing dataset that 'run_analysis.R' processes into the output 'tidyData.txt' in the main directory. Refer to 'README.txt' in this folder for more information on the dataset.\n\n\nOverview steps of How 'run_analysis.R' script works:\n==================================================================\nPROCESS TRAINING DATA:\n1) Read training data, labeling columns with descriptive names.\n\n2) Combine training data.\n\n3) Extract only measurements for mean() and std() in training data using regex in grep() command.\n\n\nPROCESS TEST DATA:\n4) Read test data, labeling columns with descriptive names.\n\n5) Combine test data.\n\n6) Extract only measurements for mean() and std() in test data using regex in grep() command.\n\n\nCREATE TIDY DATA SET:\n7) Combine final training and test data sets into \"data_combined\"\n\n8) Apply descriptive activity names to name the activities in the data set.\n\n9) Create tidy data set by melting and casting \"data_combined\", grouping by columns subjectId and activityName.\n\n10) Write tidy data set to \"tidyData.txt\" file in working directory.",
+    "created" : 1406323881309.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1241806005",
+    "id" : "701BFC0",
+    "lastKnownWriteTime" : 1406745947,
+    "path" : "~/Desktop/Course3/README.md",
+    "project_path" : "README.md",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "markdown"
+}
